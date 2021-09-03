@@ -127,3 +127,4 @@ buildNumber.properties
 # Log files
 *_log.txt*
 *_log_*.txt*
+callsbot/auth/key.txt
