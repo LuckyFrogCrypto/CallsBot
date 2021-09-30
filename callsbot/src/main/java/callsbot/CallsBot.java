@@ -56,7 +56,7 @@ public class CallsBot extends AbilityBot {
 			+ "\n/help - get this list"
 			+ "\n----Admin only----"
 			+ "\n/removecalls - remove calls dialog"
-			+ "----End----";
+			+ "\n----End----";
 	private static final String CALLSBOT_NAME = "callsbot";
 	private static final String USERS_DB_NAME = "users";
 	private static final String ACTIVE_CALLS_DB_NAME = "active";

@@ -70,8 +70,12 @@ public class CoingeckoApiGrabber {
 	}
 	
 	public Set<Coin> findCoins(String identifier) {
-		if(TICKER_TO_COINS_MAP.containsKey(identifier.toLowerCase())){
-			return TICKER_TO_COINS_MAP.get(identifier);
+		identifier = identifier.toLowerCase();
+		if(TICKER_TO_COINS_MAP.containsKey(identifier)){
+			Set<Coin> result =  TICKER_TO_COINS_MAP.get(identifier);
+			if(result != null) {
+				return result;
+			}
 		}
 		Set<Coin> result = new HashSet<Coin>();
 		Coin coin = PLATFORM_ID_TO_COINS_MAP.get(identifier);
@@ -79,7 +83,7 @@ public class CoingeckoApiGrabber {
 			result.add(coin);
 			return result;
 		}
-		coin = NAME_TO_COINS_MAP.get(identifier.toLowerCase());
+		coin = NAME_TO_COINS_MAP.get(identifier);
 		if(coin != null) {
 			result.add(coin);
 			return result;
