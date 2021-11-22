@@ -74,6 +74,10 @@ public class Utils {
 		return getJSONHTTP(urlString, false, false, null, null, null);
 	}
 	
+	public static JSONObject getJSONHTTP(String urlString, Map<String, String> extraProperties) throws Exception {
+		return getJSONHTTP(urlString, false, false, extraProperties, null, null);
+	}
+	
 	public static JSONObject getJSONHTTP(String urlString, boolean readJSONArray) throws Exception {
 		return getJSONHTTP(urlString, readJSONArray, false, null, null, null);
 	}

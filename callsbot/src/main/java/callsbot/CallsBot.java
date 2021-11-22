@@ -174,7 +174,6 @@ public class CallsBot extends AbilityBot {
 	          .build();
 	}
 
-	//todo
 	public Ability startCallAbility() {
 		return Ability
 		      .builder()
@@ -250,6 +249,30 @@ public class CallsBot extends AbilityBot {
 	          .privacy(Privacy.PUBLIC)
 	          .action(ctx -> sendBotTime(ctx))
 	          .build();
+	}
+	
+	public Ability getCollectionStatsAbility() {
+		return Ability
+		      .builder()
+		      .name("cstats")
+		      .info("Get stats for an Opensea collection!")
+	          .locality(Locality.ALL)
+	          .privacy(Privacy.PUBLIC)
+	          .action(ctx -> getCollectionStats(ctx))
+	          .build();
+	}
+
+	private void getCollectionStats(MessageContext ctx) {
+		String[] args = ctx.arguments();
+		User callUser = ctx.user();
+		String message = null;
+		if(args.length == 1) {
+			message = OpenSeaApi.getCollectionStats(args[0]);
+		}
+		if(message == null) {
+			message = "Couldn't get stats for this slug, " + callUser.getUserName();
+		}		
+		silent.sendMd(message, ctx.chatId());
 	}
 
 	private void sendBotTime(MessageContext ctx) {
@@ -441,11 +464,11 @@ public class CallsBot extends AbilityBot {
         inlineKeyboard.setKeyboard(rowsInline);
         returnMessage.setReplyMarkup(inlineKeyboard);
         returnMessage.setReplyMarkup(inlineKeyboard);
-	try {
-	    execute(returnMessage);
-	} catch (TelegramApiException e) {
-	    e.printStackTrace();
-	}
+		try {
+		    execute(returnMessage);
+		} catch (TelegramApiException e) {
+		    e.printStackTrace();
+		}
 	}
 	
 	private void startCall(MessageContext ctx) {
