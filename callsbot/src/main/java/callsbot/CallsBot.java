@@ -48,6 +48,7 @@ public class CallsBot extends AbilityBot {
 	private static final String HELP_TEXT = 
 			"----Bot functions----"
 			+ "\n/call coin resolvedate(formatted as dd-MM-yyyy, has to be 1 day or more in the future) - start a call for a coin"
+			+ "\n/cstats nftcollection - get Opensea stats for an nft collection"
 			+ "\n/listactive - get a list of all active calls"
 			+ "\n/listmine - get a list of your active calls"
 			+ "\n/listresolved - get a list of all resolved calls"
@@ -267,7 +268,7 @@ public class CallsBot extends AbilityBot {
 		User callUser = ctx.user();
 		String message = null;
 		if(args.length == 1) {
-			message = OpenSeaApi.getCollectionStats(args[0]);
+			message = OpenSeaApiGrabber.getCollectionStats(args[0]);
 		}
 		if(message == null) {
 			message = "Couldn't get stats for this slug, " + callUser.getUserName();
